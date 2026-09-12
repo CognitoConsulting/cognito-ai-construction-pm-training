@@ -1,0 +1,179 @@
+{
+  "phase": "Phase 1 - Preparation and Control",
+  "allowed_statuses": [
+    "PLANNED",
+    "IN_PROGRESS",
+    "OUTPUT_SAVED",
+    "REVIEW_PENDING",
+    "APPROVED",
+    "CLOSED",
+    "BLOCKED",
+    "FAILED"
+  ],
+  "tasks": [
+    {
+      "task_id": "P1-001",
+      "title": "Define research questions",
+      "description": "Create the initial research questions needed to ground the training audience, construction context, AI workflow opportunities, and quality constraints.",
+      "owner_agent": "research_agent",
+      "dependencies": [],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "00_CONTROL/QUALITY_RULES.md"
+      ],
+      "output_files": [
+        "01_RESEARCH/research_questions.md"
+      ],
+      "status": "PLANNED",
+      "priority": 1,
+      "model_tier": "fast"
+    },
+    {
+      "task_id": "P1-002",
+      "title": "Establish construction project concept",
+      "description": "Define a concise, realistic fictional construction project concept without generating detailed project records or exercise data.",
+      "owner_agent": "project_data_agent",
+      "dependencies": [
+        "P1-001"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "01_RESEARCH/research_questions.md"
+      ],
+      "output_files": [
+        "02_PROJECT/project_concept_brief.md"
+      ],
+      "status": "PLANNED",
+      "priority": 1,
+      "model_tier": "standard"
+    },
+    {
+      "task_id": "P1-003",
+      "title": "Define project data schema",
+      "description": "Specify the data entities, field standards, relationships, naming conventions, and validation needs for later fictional project data.",
+      "owner_agent": "project_data_agent",
+      "dependencies": [
+        "P1-002"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "02_PROJECT/project_concept_brief.md"
+      ],
+      "output_files": [
+        "02_PROJECT/project_data_schema.md"
+      ],
+      "status": "PLANNED",
+      "priority": 1,
+      "model_tier": "standard"
+    },
+    {
+      "task_id": "P1-004",
+      "title": "Define document taxonomy",
+      "description": "Create a controlled taxonomy for source documents, fictional project documents, trainer-only materials, participant materials, reviews, and final outputs.",
+      "owner_agent": "document_agent",
+      "dependencies": [
+        "P1-003"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "02_PROJECT/project_data_schema.md"
+      ],
+      "output_files": [
+        "02_PROJECT/document_taxonomy.md"
+      ],
+      "status": "PLANNED",
+      "priority": 2,
+      "model_tier": "document"
+    },
+    {
+      "task_id": "P1-005",
+      "title": "Define planted-issue methodology",
+      "description": "Specify how hidden issues, inconsistencies, risks, and review findings will be designed, tracked, and separated from participant-facing materials.",
+      "owner_agent": "curation_agent",
+      "dependencies": [
+        "P1-003",
+        "P1-004"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "00_CONTROL/QUALITY_RULES.md",
+        "02_PROJECT/project_data_schema.md",
+        "02_PROJECT/document_taxonomy.md"
+      ],
+      "output_files": [
+        "02_PROJECT/planted_issue_methodology.md"
+      ],
+      "status": "PLANNED",
+      "priority": 2,
+      "model_tier": "reasoning"
+    },
+    {
+      "task_id": "P1-006",
+      "title": "Identify source and reference categories",
+      "description": "Define categories of external and internal references needed later, without inventing or summarizing research findings.",
+      "owner_agent": "research_agent",
+      "dependencies": [
+        "P1-001"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "01_RESEARCH/research_questions.md"
+      ],
+      "output_files": [
+        "01_RESEARCH/source_reference_categories.md"
+      ],
+      "status": "PLANNED",
+      "priority": 2,
+      "model_tier": "fast"
+    },
+    {
+      "task_id": "P1-007",
+      "title": "Define training architecture",
+      "description": "Outline the modular architecture that can scale across 2-day, 3-day, and 4-day delivery models without generating the full curriculum.",
+      "owner_agent": "supervisor_agent",
+      "dependencies": [
+        "P1-001",
+        "P1-002",
+        "P1-006"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "01_RESEARCH/research_questions.md",
+        "01_RESEARCH/source_reference_categories.md",
+        "02_PROJECT/project_concept_brief.md"
+      ],
+      "output_files": [
+        "02_PROJECT/training_architecture.md"
+      ],
+      "status": "PLANNED",
+      "priority": 3,
+      "model_tier": "reasoning"
+    },
+    {
+      "task_id": "P1-008",
+      "title": "Define quality gates",
+      "description": "Translate the quality rules into phase-specific validation gates, approval criteria, and failure recovery checkpoints.",
+      "owner_agent": "review_agent",
+      "dependencies": [
+        "P1-003",
+        "P1-004",
+        "P1-005",
+        "P1-007"
+      ],
+      "input_files": [
+        "00_CONTROL/MASTER_SPEC.md",
+        "00_CONTROL/QUALITY_RULES.md",
+        "02_PROJECT/project_data_schema.md",
+        "02_PROJECT/document_taxonomy.md",
+        "02_PROJECT/planted_issue_methodology.md",
+        "02_PROJECT/training_architecture.md"
+      ],
+      "output_files": [
+        "08_REVIEWS/phase_1_quality_gates.md"
+      ],
+      "status": "PLANNED",
+      "priority": 3,
+      "model_tier": "reasoning"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Model tier configuration
+# Change tier-to-model mapping outside this file when deploying in a specific runtime.
+
+model_tiers:
+  fast:
+    purpose: "Quick classification, extraction, drafting, and low-risk coordination."
+  standard:
+    purpose: "Balanced drafting, schema work, and structured project content."
+  reasoning:
+    purpose: "Multi-step analysis, consistency checks, review, and governance decisions."
+  document:
+    purpose: "Document assembly, formatting, packaging, and artifact production."
+
+agents:
+  research_agent:
+    preferred_tier: fast
+  project_data_agent:
+    preferred_tier: standard
+  curation_agent:
+    preferred_tier: reasoning
+  workflow_agent:
+    preferred_tier: reasoning
+  review_agent:
+    preferred_tier: reasoning
+  document_agent:
+    preferred_tier: document
+  supervisor_agent:
+    preferred_tier: reasoning
+  final_qa_agent:
+    preferred_tier: reasoning
+
+defaults:
+  status_on_new_task: PLANNED
+  status_on_saved_output: OUTPUT_SAVED
+  status_before_approval: REVIEW_PENDING
+  approval_status: APPROVED
+  terminal_status: CLOSED
+  failure_status: FAILED
+  blocked_status: BLOCKED
